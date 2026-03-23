@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gopika's Webpage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --void:#03070f;--deep:#060d1c;--surface:#0a1628;--card:#0d1e35;
+  --border:#152840;--glow:#0d3a5c;
+  --c1:#00e5ff;--c2:#00ffb3;--c3:#ff6b35;--c4:#7b61ff;
+  --t1:#e8f4ff;--t2:#9bbdd8;--t3:#5a7f9a;
+  --f-display:'Syne Mono',monospace;
+  --f-mono:'Azeret Mono',monospace;
+  --f-body:'Poppins',sans-serif;
+  --nav:220px;--ease:cubic-bezier(.23,1,.32,1);
+}
+body{background:var(--void);color:var(--t1);font-family:var(--f-body);font-size:15px;line-height:1.8;min-height:100vh;display:flex;overflow-x:hidden;}
+
+/* texture */
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 0%,rgba(0,180,255,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(0,255,179,.05) 0%,transparent 55%);pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.022) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;animation:gf 7s ease-in-out infinite alternate;}
+@keyframes gf{from{opacity:.35}to{opacity:.85}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;width:var(--nav);height:100vh;background:linear-gradient(180deg,var(--deep) 0%,var(--void) 100%);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:2rem 1.25rem;z-index:200;overflow:hidden;}
+nav::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c1),var(--c2),transparent);animation:ap 4s ease-in-out infinite;}
+@keyframes ap{0%,100%{opacity:.5}50%{opacity:1}}
+
+.nav-wave{height:28px;margin-bottom:1.5rem;overflow:hidden;}
+.nav-wave svg{width:100%;height:100%;opacity:.3;}
+.nav-brand{margin-bottom:1.75rem;}
+.nav-name{font-family:var(--f-body);font-weight:600;font-size:.88rem;color:var(--t1);letter-spacing:.02em;display:block;line-height:1.2;}
+.nav-role{font-family:var(--f-mono);font-size:.52rem;color:var(--c1);letter-spacing:.18em;text-transform:uppercase;margin-top:.25rem;display:block;opacity:.75;}
+nav ul{list-style:none;flex:1;}
+nav ul li{margin-bottom:.12rem;}
+nav ul li a{display:flex;align-items:center;gap:.6rem;padding:.52rem .75rem;border-radius:3px;text-decoration:none;font-family:var(--f-mono);font-size:.68rem;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;transition:all .2s var(--ease);border:1px solid transparent;position:relative;cursor:pointer;}
+nav ul li a .dot{width:6px;height:6px;border-radius:50%;background:var(--t3);flex-shrink:0;transition:all .2s;}
+nav ul li a:hover{color:var(--t1);background:rgba(0,229,255,.05);border-color:var(--glow);}
+nav ul li a:hover .dot{background:var(--c2);box-shadow:0 0 8px var(--c2);}
+nav ul li a.active{color:var(--c1);background:rgba(0,229,255,.07);border-color:var(--glow);}
+nav ul li a.active .dot{background:var(--c1);box-shadow:0 0 10px var(--c1);}
+nav ul li a.active::before{content:'';position:absolute;left:0;top:25%;bottom:25%;width:2px;border-radius:1px;background:var(--c1);box-shadow:0 0 8px var(--c1);}
+.nav-socials{display:flex;gap:.45rem;flex-wrap:wrap;padding-top:1.25rem;border-top:1px solid var(--border);margin-top:1.25rem;}
+.soc-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid var(--border);border-radius:3px;color:var(--t3);text-decoration:none;transition:all .2s var(--ease);}
+.soc-btn:hover{color:var(--c1);border-color:var(--c1);background:rgba(0,229,255,.08);box-shadow:0 0 14px rgba(0,229,255,.15);}
+.soc-btn svg{width:12px;height:12px;fill:currentColor;}
+.nav-copy{font-family:var(--f-mono);font-size:.48rem;color:var(--t3);letter-spacing:.1em;margin-top:.75rem;}
+
+/* ── MAIN ── */
+main{margin-left:var(--nav);flex:1;padding:3rem 4rem 4rem;position:relative;z-index:1;max-width:calc(100vw - var(--nav));}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s var(--ease);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* page header */
+.ph{margin-bottom:2.75rem;}
+.ph-label{font-family:var(--f-mono);font-size:.58rem;color:var(--c1);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.45rem;display:block;opacity:.8;}
+.ph h1{font-family:var(--f-display);font-size:2rem;font-weight:400;color:var(--t1);letter-spacing:.02em;line-height:1.1;}
+.ph-line{margin-top:1.1rem;height:1px;background:linear-gradient(90deg,var(--glow) 70px,transparent);position:relative;}
+.ph-line::before{content:'';position:absolute;left:0;top:-1px;width:70px;height:3px;background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:0 0 14px var(--c1);border-radius:2px;}
+
+/* section heading */
+.sec-h{font-family:var(--f-display);font-size:.78rem;color:var(--c1);letter-spacing:.15em;text-transform:uppercase;margin:2.5rem 0 1rem;display:flex;align-items:center;gap:.75rem;}
+.sec-h::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent);}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:1fr 255px;gap:3.5rem;align-items:start;}
+.bio p{color:var(--t1);margin-bottom:1rem;font-size:.88rem;max-width:580px;font-weight:300;}
+.bio p a{color:var(--c1);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3);transition:all .15s;}
+.bio p a:hover{color:var(--c2);border-color:var(--c2);}
+.bio strong{color:var(--t1);font-weight:500;}
+.chip-row{display:flex;flex-wrap:wrap;gap:.32rem;margin:1.1rem 0 1.4rem;}
+.chip{padding:.18rem .6rem;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.18);border-radius:2px;font-family:var(--f-mono);font-size:.54rem;color:var(--c2);letter-spacing:.1em;text-transform:uppercase;}
+.soc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.38rem;margin-top:1.6rem;}
+.soc-card{display:flex;align-items:center;gap:.5rem;padding:.5rem .7rem;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;font-family:var(--f-mono);font-size:.6rem;color:var(--t2);letter-spacing:.05em;transition:all .2s var(--ease);}
+.soc-card svg{width:12px;height:12px;fill:currentColor;flex-shrink:0;}
+.soc-card:hover{color:var(--c1);border-color:var(--glow);background:rgba(0,229,255,.06);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 12px rgba(0,229,255,.07);}
+
+/* photo */
+.profile-col{display:flex;flex-direction:column;align-items:center;gap:1.1rem;position:sticky;top:3rem;}
+.photo-ring{position:relative;width:210px;height:210px;}
+.photo-ring::before{content:'';position:absolute;inset:-3px;border-radius:8px;background:conic-gradient(var(--c1) 0deg,var(--c2) 120deg,var(--c4) 240deg,var(--c1) 360deg);z-index:0;animation:rr 6s linear infinite;}
+@keyframes rr{to{filter:hue-rotate(40deg)}}
+.photo-inner{position:relative;z-index:1;width:210px;height:210px;border-radius:6px;overflow:hidden;background:var(--card);}
+.photo-inner img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;font-family:var(--f-mono);font-size:.58rem;color:var(--t3);letter-spacing:.1em;text-align:center;}
+.photo-placeholder .ico{font-size:2.2rem;opacity:.25;}
+.scan{position:absolute;inset:0;z-index:2;border-radius:6px;overflow:hidden;pointer-events:none;}
+.scan::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.55),transparent);box-shadow:0 0 14px var(--c1);animation:sm 3.5s ease-in-out infinite;}
+@keyframes sm{0%{top:0;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
+.us-frame{width:210px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.6rem .75rem;font-family:var(--f-mono);font-size:.52rem;color:var(--c1);letter-spacing:.1em;opacity:.65;line-height:1.85;}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.8rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.2rem 1.2rem .95rem;position:relative;overflow:hidden;transition:all .25s var(--ease);}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));opacity:0;transition:opacity .25s;}
+.proj-card:hover{border-color:var(--glow);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px rgba(0,229,255,.05);}
+.proj-card:hover::before{opacity:1;}
+.proj-ico{font-size:1.4rem;margin-bottom:.65rem;}
+.proj-title{font-family:var(--f-body);font-size:.8rem;font-weight:600;color:var(--c1);margin-bottom:.35rem;letter-spacing:.01em;}
+.proj-desc{font-size:.8rem;color:var(--t2);line-height:1.65;margin-bottom:.75rem;font-weight:300;}
+.tag-row{display:flex;flex-wrap:wrap;gap:.28rem;}
+.ptag{padding:.1rem .38rem;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.14);border-radius:2px;font-family:var(--f-mono);font-size:.5rem;color:rgba(0,229,255,.65);letter-spacing:.08em;text-transform:uppercase;}
+
+/* ── PUBLICATIONS ── */
+.pub-list{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
+.pub{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--glow);border-radius:0 5px 5px 0;padding:.95rem 1.15rem;transition:all .2s var(--ease);position:relative;overflow:hidden;}
+.pub::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,229,255,.03),transparent);opacity:0;transition:opacity .2s;}
+.pub:hover{border-left-color:var(--c1);transform:translateX(2px);box-shadow:-2px 0 18px rgba(0,229,255,.1);}
+.pub:hover::after{opacity:1;}
+.pub-num{font-family:var(--f-mono);font-size:.53rem;color:var(--t3);margin-bottom:.22rem;letter-spacing:.1em;}
+.pub-title{font-size:.86rem;font-weight:500;color:var(--t1);margin-bottom:.18rem;line-height:1.45;}
+.pub-auth{font-size:.78rem;color:var(--t2);font-style:italic;margin-bottom:.14rem;}
+.pub-venue{font-size:.7rem;color:var(--c2);font-family:var(--f-mono);margin-bottom:.45rem;}
+.pub-links{display:flex;gap:.38rem;flex-wrap:wrap;}
+.plink{padding:.12rem .48rem;border:1px solid var(--glow);border-radius:2px;font-family:var(--f-mono);font-size:.54rem;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:all .15s;}
+.plink:hover{color:var(--c1);border-color:var(--c1);background:rgba(0,229,255,.07);}
+.badge{display:inline-block;padding:.09rem .38rem;background:rgba(255,107,53,.12);border:1px solid var(--c3);border-radius:2px;font-size:.52rem;color:var(--c3);font-family:var(--f-mono);letter-spacing:.08em;margin-left:.35rem;vertical-align:middle;text-transform:uppercase;}
+
+/* ── MISC ── */
+.misc-group{margin-bottom:1.4rem;}
+.misc-row{display:flex;gap:1.2rem;padding:.75rem 0;border-bottom:1px solid var(--border);}
+.misc-row:last-child{border-bottom:none;}
+.misc-yr{font-family:var(--f-mono);font-size:.62rem;color:var(--t3);min-width:50px;padding-top:.18rem;letter-spacing:.06em;}
+.misc-txt{flex:1;font-size:.83rem;color:var(--t1);line-height:1.6;font-weight:300;}
+.misc-txt strong{color:var(--c1);font-weight:500;}
+.misc-txt em{color:var(--c2);font-style:normal;}
+
+/* ── CV ── */
+.cv-dl{display:inline-flex;align-items:center;gap:.55rem;padding:.62rem 1.35rem;background:transparent;border:1px solid var(--c1);border-radius:3px;font-family:var(--f-mono);font-size:.65rem;color:var(--c1);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:all .2s var(--ease);margin-bottom:2.1rem;}
+.cv-dl:hover{background:rgba(0,229,255,.08);box-shadow:0 0 22px rgba(0,229,255,.18);transform:translateY(-1px);}
+.cv-dl svg{width:13px;height:13px;fill:currentColor;}
+.cv-row{display:grid;grid-template-columns:140px 1fr;gap:1.4rem;padding:.82rem 0;border-bottom:1px solid var(--border);}
+.cv-row:last-child{border-bottom:none;}
+.cv-dt{font-family:var(--f-mono);font-size:.6rem;color:var(--t3);letter-spacing:.06em;line-height:1.6;}
+.cv-dd strong{display:block;font-size:.86rem;color:var(--t1);font-weight:500;margin-bottom:.1rem;}
+.cv-dd em{font-size:.7rem;color:var(--c2);font-style:normal;font-family:var(--f-mono);display:block;margin-bottom:.15rem;}
+.cv-dd span{font-size:.78rem;color:var(--t2);font-weight:300;}
+
+/* ── FOOTER ── */
+footer{margin-top:3.5rem;padding-top:1.4rem;border-top:1px solid var(--border);font-family:var(--f-mono);font-size:.54rem;color:var(--t3);letter-spacing:.1em;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--void);}
+::-webkit-scrollbar-thumb{background:var(--glow);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.3);}
+::selection{background:rgba(0,229,255,.2);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wave">
+    <svg viewBox="0 0 200 28" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="0,14 8,14 12,4 16,24 20,8 24,20 28,14 34,14 38,3 42,25 46,7 50,21 54,11 58,18 62,14 68,14 72,2 76,26 80,8 84,22 88,14 94,14 98,10 102,19 106,6 110,23 114,13 118,17 122,14 128,14 132,4 136,24 140,9 144,21 148,14 154,14 158,12 162,18 166,7 170,22 174,14 180,14 184,10 188,19 192,14 200,14"
+        stroke="#00e5ff" stroke-width="1" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="nav-brand">
+    <span class="nav-name">Gopika Gopikrishnan</span>
+  </div>
+  <ul>
+    <li><a href="#" class="active" onclick="showPage('about',this);return false;"><span class="dot"></span>About</a></li>
+    <li><a href="#" onclick="showPage('projects',this);return false;"><span class="dot"></span>Projects &amp; Papers</a></li>
+    <li><a href="#" onclick="showPage('misc',this);return false;"><span class="dot"></span>Miscellaneous</a></li>
+    <li><a href="#" onclick="showPage('cv',this);return false;"><span class="dot"></span>CV</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a class="soc-btn" href="https://scholar.google.com/citations?user=4wyk8g4AAAAJ&hl=en" target="_blank" title="Google Scholar">
+      <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+    </a>
+    <a class="soc-btn" href="https://github.com/gopikagopikrishnan" target="_blank" title="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.31 3.435 9.813 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.31 24 17.807 24 12.5 24 5.87 18.627.5 12 .5z"/></svg>
+    </a>
+    <a class="soc-btn" href="www.linkedin.com/in/gopika-g-krishnan" target="_blank" title="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a class="soc-btn" href="mailto:gopikagopikrishnan@gmail.com" title="Email">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+  </div>
+  <p class="nav-copy">© 2026 Gopika Gopikrishnan</p>
+</nav>
+
+<main>
+
+<!-- ABOUT -->
+<div class="page active" id="page-about">
+  <div class="ph">
+    <span class="ph-label">About</span>
+    <h1>Gopika Gopikrishnan</h1>
+    <div class="ph-line"></div>
+  </div>
+  <div class="about-wrap">
+    <div class="bio">
+      <p>I am a PhD student working at the intersection of <strong>deep learning</strong> and <strong>medical ultrasound imaging</strong>. My work focuses on deep beamforming architectures that adapt to tissue structure and imaging context, bridging classical beamforming with generalized neural network design.</p>
+      <p>I am currently affiliated with <a href="https://www.singaporetech.edu.sg/">Ultrasound Imaging Lab and SITxNVIDIA AI Centre, Singapore Institute of Technology</a>.</p>
+      <p>I completed Bachelore of Technology (B. Tech) at <a href="https://ktu.edu.in">APJ Abdul Kalam Technological University</a>.</p>
+      <p>I am passionate about developing computational tools that make medical diagnostics more precise and accessible, particularly in resource-constrained settings.</p>
+      <div class="soc-grid">
+        <a class="soc-card" href="https://scholar.google.com/citations?user=4wyk8g4AAAAJ&hl=en" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>Google Scholar
+        </a>
+        <a class="soc-card" href="https://github.com/gopikagopikrishnan" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.31 3.435 9.813 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.31 24 17.807 24 12.5 24 5.87 18.627.5 12 .5z"/></svg>GitHub
+        </a>
+        <a class="soc-card" href="www.linkedin.com/in/gopika-g-krishnan" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn
+        </a>
+        <a class="soc-card" href="mailto:gopikagopikrishnan@gmail.com">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email
+        </a>
+      </div>
+    </div>
+    <div class="profile-col">
+      <div class="photo-ring">
+        <div class="photo-inner">
+          <img src="photo.jpg" alt="Gopika">
+          <div class="photo-placeholder">
+            <span class="ico">◎</span>
+            <img src="photo.jpg" alt="Gopika">
+          </div>
+        </div>
+        <div class="scan"></div>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Gopika Gopikrishnan</footer>
+</div>
+
+<!-- PROJECTS -->
+<div class="page" id="page-projects">
+  <div class="ph">
+    <h1>Projects &amp; Publications</h1>
+    <div class="ph-line"></div>
+  </div>
+  <h2 class="sec-h">◉ Research Projects</h2>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-title">M-BEAM Mixture of Beamforming Experts</div>
+      <p class="proj-desc">Deep learning framework combining three expert U-Nets via a tissue-aware gating network for adaptive ultrasound image reconstruction.</p>
+      <div class="tag-row"><span class="ptag">PyTorch</span><span class="ptag">U-Net</span><span class="ptag">MoE</span><span class="ptag">Beamforming</span><span class="ptag">Optuna</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-title">ADAPT</div>
+      <p class="proj-desc">Interpretable alternative to black-box CNNs for ultrasound beamforming, exploiting physical priors under limited training data constraints.</p>
+      <div class="tag-row"><span class="ptag">CNN</span><span class="ptag">MATLAB</span><span class="ptag">Physics-Informed</span></div>
+    </div>
+  </div>
+
+  <h2 class="sec-h">◉ Journal Publications</h2>
+  <ol class="pub-list">
+    <li class="pub">
+      <div class="pub-title">Compact Planar Multiresonator with High Surface Encoding Capacity for Chipless RFID Tag Applications</div>
+      <div class="pub-auth">Gopika Gopikrishnan, M Sumi, AI Harikrishnan, Lija Arun, R Saranya, G Vinod</div>
+      <div class="pub-venue">Results in Engineering, Elsevier, 2025</div>
+      <div class="pub-links"><a class="plink" href="https://doi.org/10.1016/j.rineng.2025.106347">Journal</a></div>
+    </li>
+  </ol>
+
+  <h2 class="sec-h">◉ Conference Publications</h2>
+  <ol class="pub-list">
+    <li class="pub">
+      <div class="pub-title">Planar U-Shaped Slot Multiresonator-based Chipless RFID Tags</div>
+      <div class="pub-auth">Gopika Gopikrishnan, M Sumi, AI Harikrishnan, R Saranya, G Vinod</div>
+      <div class="pub-venue">3rd International Conference on Artificial Intelligence For Internet of Things (AIIoT), Chennai, India</div>
+      <div class="pub-links"><a class="plink" href="https://ieeexplore.ieee.org/iel8/10574534/10574536/10574544.pdf">Paper</a></div>
+    </li>
+  </ol>
+  <footer>© 2025 Gopika Gopikrishnan · hosted on GitHub Pages</footer>
+</div>
+
+<!-- MISC -->
+<div class="page" id="page-misc">
+  <div class="ph">
+    <h1>Miscellaneous</h1>
+    <div class="ph-line"></div>
+  </div>
+  <h2 class="sec-h">Awards &amp; Honors</h2>
+  <div class="misc-group">
+    <div class="misc-row"><span class="misc-yr">20XX</span><div class="misc-txt"><strong>[Award Name]</strong> — <em>[Institution]</em>. Brief description.</div></div>
+    <div class="misc-row"><span class="misc-yr">20XX</span><div class="misc-txt"><strong>[Fellowship / Scholarship]</strong> — <em>[Institution]</em>.</div></div>
+  </div>
+  <h2 class="sec-h">Hobbies &amp; Interests</h2>
+  <div class="misc-group">
+    <div class="misc-row"><span class="misc-yr">—</span><div class="misc-txt">[Fill in your hobbies and interests — makes your page feel personal!]</div></div>
+  </div>
+  <footer>© 2026 Gopika Gopikrishnan · hosted on GitHub Pages</footer>
+</div>
+
+<!-- CV -->
+<div class="page" id="page-cv">
+  <div class="ph">
+    <span class="ph-label">// curriculum vitae</span>
+    <h1>CV</h1>
+    <div class="ph-line"></div>
+  </div>
+  <a class="cv-dl" href="CV_Gopika.pdf" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
+    Download Full CV
+  </a>
+  <h2 class="sec-h">Education</h2>
+  <div>
+    <div class="cv-row"><div class="cv-dt">2025 - Present</div><div class="cv-dd"><strong>Doctor of Engineering (D. Eng)</strong><em>Singapore Insitute of Technology, Singapore</em><span>Thesis: Deep Learning in Ultrasound Imaging. Advisor: Dr. Mahesh Raveendranatha Panicker</span></div></div>
+    <div class="cv-row"><div class="cv-dt">20XX - 20XX</div><div class="cv-dd"><strong>[B.Tech in Field]</strong><em>[Institution Name]</em><span>[GPA / Distinction]</span></div></div>
+  </div>
+  <h2 class="sec-h">Research Experience</h2>
+  <div>
+    <div class="cv-row"><div class="cv-dt">20XX – Present</div><div class="cv-dd"><strong>[Research Assistant / Role]</strong><em>[Lab Name], [Institution]</em><span>Brief description of your work.</span></div></div>
+    <div class="cv-row"><div class="cv-dt">Summer 20XX</div><div class="cv-dd"><strong>[Internship / Research Visit]</strong><em>[Organization]</em><span>What you worked on.</span></div></div>
+  </div>
+  <h2 class="sec-h">Technical Skills</h2>
+  <div>
+    <div class="cv-row"><div class="cv-dt">Languages</div><div class="cv-dd"><span>Python, MATLAB, C/C++ (basic)</span></div></div>
+    <div class="cv-row"><div class="cv-dt">Frameworks</div><div class="cv-dd"><span>PyTorch, NumPy, SciPy, scikit-learn, Optuna</span></div></div>
+    <div class="cv-row"><div class="cv-dt">Tools</div><div class="cv-dd"><span>Google Colab, Git/GitHub, HDF5, LaTeX</span></div></div>
+    <div class="cv-row"><div class="cv-dt">Domain</div><div class="cv-dd"><span>Ultrasound beamforming (DAS, Capon, FDMAS, MV), RF signal processing, deep learning for medical imaging, DIAAS nutrition assessment</span></div></div>
+  </div>
+  <footer>© 2025 Gopika Gopikrishnan · hosted on GitHub Pages</footer>
+</div>
+
+</main>
+
+<script>
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
