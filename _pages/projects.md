@@ -19,7 +19,7 @@ author_profile: true
   </p>
 
   <div style="text-align: center; margin-top: 20px;">
-    <img src="{{ '/images/adapt-diagram.png' | relative_url }}" style="max-width: 100%; height: auto; max-height: 400px; display: block; margin: 0 auto 8px auto; border-radius: 4px;" alt="ADAPT Method">
+    <img src="{{ '/images/adapt.png' | relative_url }}" style="max-width: 100%; height: auto; max-height: 400px; display: block; margin: 0 auto 8px auto; border-radius: 4px;" alt="ADAPT Method">
     <div style="font-style: italic; color: #555; font-size: 0.9em;">Method flowchart showing patch-wise processing and apodization</div>
   </div>
 </div>
