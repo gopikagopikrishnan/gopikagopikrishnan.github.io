@@ -11,6 +11,8 @@ author_profile: true
 
 An interpretable alternative to black-box CNNs that exploits physical priors for ultrasound beamforming under limited training data. ADAPT combines signal processing principles with learnable parameters, enabling depth-agnostic and tissue-aware reconstruction while maintaining explainability and robustness to out-of-distribution data.
 
+**GitHub repository:** Code(https://github.com/gopikagopikrishnan/ADAPT)
+
 **Key Technologies:** CNN, MATLAB, Ultrasound Signal Processing
 
 ![ADAPT Method]({{ '/images/adapt-diagram.png' | relative_url }}){: style="max-width: 600px; height: auto;"}
@@ -43,6 +45,8 @@ Design and development of an equalizer subsystem for a high-speed serializer-des
 ### 4. [Elderly Fall Detection & Alert System](https://github.com/gopikagopikrishnan/Elderly-Fall-Detection-and-Alert-System)
 
 Embedded system for real-time fall detection and emergency alerting, designed for elderly care applications. Uses accelerometer and gyroscope sensors to detect sudden movement patterns indicative of falls, triggering immediate alerts to caregivers.
+
+**GitHub repository:** Code(https://github.com/gopikagopikrishnan/Elderly-Fall-Detection-and-Alert-System)
 
 **Key Technologies:** Embedded Systems, Sensor Integration, Proteus, C/C++
 
@@ -77,6 +81,8 @@ Research on time-slicing high-throughput Wi-Fi networks using centralized queuin
 ### 7. [Automated Attendance System](https://github.com/gopikagopikrishnan/Haar-Classifier-and-LBPH-based-Attendance-System)
 
 B.Tech minor project for automated attendance tracking using machine learning-based recognition techniques. Implements both Haar Cascade classifiers and Local Binary Pattern Histogram algorithm for real-time face detection and recognition.
+
+**GitHub repository:** Code(https://github.com/gopikagopikrishnan/Haar-Classifier-and-LBPH-based-Attendance-System)
 
 **Key Technologies:** Python, OpenCV, Tkinter GUI
 
