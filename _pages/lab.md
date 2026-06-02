@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Lab"
+title: "Lab Page"
 permalink: /lab/
 author_profile: true
 ---
