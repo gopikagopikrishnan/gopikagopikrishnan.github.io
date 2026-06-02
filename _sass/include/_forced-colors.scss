@@ -1,0 +1,47 @@
+/* Forced-colors / high contrast fallbacks for browsers (Edge/IE/Windows High Contrast)
+   Improves readability when OS forced-colors or high-contrast mode is active.
+*/
+
+@media (forced-colors: active) {
+  :root {
+    forced-color-adjust: none;
+  }
+
+  /* Reset core backgrounds and text to system colors */
+  html, body {
+    background: Canvas !important;
+    color: CanvasText !important;
+  }
+
+  /* Links use LinkText so they remain visible */
+  a, a:link, a:visited {
+    color: LinkText !important;
+    text-decoration: underline !important;
+  }
+
+  /* Buttons and form controls */
+  button, input, select, textarea {
+    background: ButtonFace !important;
+    color: ButtonText !important;
+    border-color: ButtonText !important;
+    forced-color-adjust: none !important;
+  }
+
+  /* Ensure code blocks remain readable */
+  pre, code, tt {
+    background: Canvas !important;
+    color: CanvasText !important;
+    border-color: CanvasText !important;
+  }
+
+  /* Allow images and svgs to keep their colors */
+  img, svg {
+    forced-color-adjust: auto !important;
+  }
+
+  /* If there are elements with explicit background colors, fall back to system colors */
+  [style*="background-color"], [class*="-bg"] {
+    background: Canvas !important;
+    color: CanvasText !important;
+  }
+}
