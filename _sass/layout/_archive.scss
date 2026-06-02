@@ -6,25 +6,25 @@
   margin-bottom: 2em;
 
   @include breakpoint($medium) {
-    @include span(12 of 12);
-  }
-
-  @include breakpoint($large) {
-    @include span(10 of 12 last);
-    @include prefix(0.5 of 12);
-  }
-
-  @media screen and (min-width: $sidebar-screen-min-width) {
     float: none;
     width: auto;
-    margin-left: 0;
-    margin-right: 0;
+  }
+}
+
+/* Only constrain width when sidebar is present */
+@include breakpoint($large) {
+  .sidebar ~ .archive {
+    @include span(10 of 12 last);
+    @include prefix(0.5 of 12);
   }
 }
 
 @media screen and (min-width: $sidebar-screen-min-width) {
   .sidebar ~ .archive {
+    float: none;
+    width: auto;
     margin-left: $sidebar-link-max-width + 10px;
+    margin-right: 0;
   }
 }
 

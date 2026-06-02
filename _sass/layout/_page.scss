@@ -17,24 +17,21 @@
   }
 }
 
-.page {
-  @include breakpoint($large) {
+/* Only constrain width when sidebar is present */
+@include breakpoint($large) {
+  .sidebar ~ .page {
     @include span(10 of 12 last);
     @include prefix(0.5 of 12);
     @include suffix(2 of 12);
-  }
-
-  @media screen and (min-width: $sidebar-screen-min-width) {
-    float: none;
-    width: auto;
-    margin-left: 0;
-    margin-right: 0;
   }
 }
 
 @media screen and (min-width: $sidebar-screen-min-width) {
   .sidebar ~ .page {
+    float: none;
+    width: auto;
     margin-left: $sidebar-link-max-width + 10px;
+    margin-right: 0;
   }
 }
 
