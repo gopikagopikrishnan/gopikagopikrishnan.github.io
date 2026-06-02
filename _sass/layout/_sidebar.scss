@@ -23,6 +23,8 @@
     position: fixed;
     padding-top: $masthead-height;
     padding-bottom: 2em;
+    width: $sidebar-link-max-width;
+    background-color: var(--global-bg-color);
   }
 
   @include breakpoint($large) {

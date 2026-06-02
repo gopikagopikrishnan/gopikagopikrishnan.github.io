@@ -3,9 +3,7 @@
    ========================================================================== */
 
 .page__footer {
-  @include clearfix;
-  background-color: var(--global-footer-bg-color);
-  color: var(--global-text-color-light);
+  display: none;
 
   width: 100%;
   flex-shrink: 0;
