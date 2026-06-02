@@ -50,6 +50,7 @@ $sidebar-screen-min-width   : 1024px;
   --global-text-color                 : #{$text};
   --global-text-color-light           : #{$text-muted};
   --global-thead-color                : #{$border-light};
+  --global-toc-bg-color               : #{$background-lighter};
 }
 
 footer {
