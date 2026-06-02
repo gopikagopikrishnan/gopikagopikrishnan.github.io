@@ -2,8 +2,37 @@
 layout: archive
 title: "Projects"
 permalink: /projects/
-author_profile: true
+author_profile: false
 ---
+
+<style>
+/* Project cards use white backgrounds via inline styles.
+   Force dark readable text on those cards in both modes. */
+.page__content > div[style] {
+  color: #1f2937 !important;
+}
+.page__content > div[style] h3,
+.page__content > div[style] h3 a,
+.page__content > div[style] p,
+.page__content > div[style] strong {
+  color: #1f2937 !important;
+}
+html[data-theme="dark"] .page__content > div[style] {
+  background-color: #2a2520 !important;
+  border-color: #48413a !important;
+  color: #e4d4c8 !important;
+}
+html[data-theme="dark"] .page__content > div[style] h3,
+html[data-theme="dark"] .page__content > div[style] h3 a,
+html[data-theme="dark"] .page__content > div[style] p,
+html[data-theme="dark"] .page__content > div[style] strong {
+  color: #e4d4c8 !important;
+}
+html[data-theme="dark"] .page__content > div[style] span[style] {
+  background-color: #302b25 !important;
+  color: #cabcb1 !important;
+}
+</style>
 
 ## Research Projects
 

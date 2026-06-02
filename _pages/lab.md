@@ -2,7 +2,7 @@
 layout: page
 title: "Lab Page"
 permalink: /lab/
-author_profile: true
+author_profile: false
 ---
 
 <script>
